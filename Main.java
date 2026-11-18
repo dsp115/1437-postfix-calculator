@@ -11,8 +11,8 @@ public class Main {
         for(String part : parts) {
             // Is part a number or an operator?
             if(isOperator(part)) {
-                int value2 = s.pop();
-                int value1 = s.pop();
+                double value2 = s.pop();
+                double value1 = s.pop();
                 if(part.equals("+")) {
                     s.push(value1 + value2);
                 } else if(part.equals("-")) {
@@ -26,14 +26,14 @@ public class Main {
                 }                
             } else {
                 try {
-                    s.push(Integer.parseInt(part));
+                    s.push(Double.parseDouble(part));
                 } catch(RuntimeException e) {
                     System.out.println("Malformed expression");
                 }
             }
         }
         // Here, hthe result should be at the top of the stack.
-        int result = s.pop();
+        double result = s.pop();
         System.out.println("The result is " + result);
     }
 
