@@ -40,19 +40,24 @@ public class Main {
                     s.push(Double.parseDouble(part));
                 } catch(RuntimeException e) {
                     System.out.println("Malformed expression");
+                    return;
                 }
             }
         }
-        // Here, hthe result should be at the top of the stack.
+                // Here, hthe result should be at the top of the stack.
+       if (s.isEmpty()) {
+            System.out.println("Malformed expression");
+            return;
+        }
+        
         double result = s.pop();
-    
-    if (!s.isEmpty()) {
-        System.out.println("Missing operator");
-        return;
-    }
-    
-    System.out.println("The result is " + result);
-    }
+        
+        if (!s.isEmpty()) {
+            System.out.println("Missing operator");
+            return;
+        }
+        
+        System.out.println("The result is " + result);
 
     public static boolean isOperator(String s) {
         return s.equals("+") || s.equals("-") ||
