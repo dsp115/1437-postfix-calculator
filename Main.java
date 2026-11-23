@@ -11,7 +11,16 @@ public class Main {
         for(String part : parts) {
             // Is part a number or an operator?
             if(isOperator(part)) {
+               if (s.isEmpty()) {
+                   System.out.println("Missing number");
+                   return;
+                }
                 double value2 = s.pop();
+                
+                if (s.isEmpty()) {
+                    System.out.println("Missing number");
+                    return;
+                }
                 double value1 = s.pop();
                 if(part.equals("+")) {
                     s.push(value1 + value2);
@@ -21,6 +30,8 @@ public class Main {
                     s.push(value1 * value2);
                 } else if(part.equals("/")) {
                     s.push(value1 / value2);
+                } else if(part.equals("^")) {
+                    s.push(Math.pow(value1, value2));
                 } else {
                     System.out.println("Unsupported operator: " + part);
                 }                
@@ -34,11 +45,18 @@ public class Main {
         }
         // Here, hthe result should be at the top of the stack.
         double result = s.pop();
-        System.out.println("The result is " + result);
+    
+    if (!s.isEmpty()) {
+        System.out.println("Missing operator");
+        return;
+    }
+    
+    System.out.println("The result is " + result);
     }
 
     public static boolean isOperator(String s) {
-        return s.equals("+") || s.equals("-") || 
-            s.equals("*") || s.equals("/");
+        return s.equals("+") || s.equals("-") ||
+       s.equals("*") || s.equals("/") ||
+       s.equals("^");
     }
 }
